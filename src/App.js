@@ -5,6 +5,8 @@ import Login from './Login';
 import { getTokenFromUrl } from './spotify';
 import { set } from 'mongoose';
 
+const spotify = new SpotifyWebApi();
+
 function App() {
 
   const [token, setToken] = useState(null);
@@ -18,7 +20,7 @@ function App() {
 
     const _token=hash.access_token;
 
-    if(token){
+    if(_token){
       setToken(_token);
     }
     console.log("I HAVE A TOKEN: ", token);
@@ -26,8 +28,12 @@ function App() {
 
   return (
     <div className="app">
-      {/* Spotify Logo */}
-      {/* Login with Spotify Button */}
+      
+      {/* if a token is present, then displayes a message that you are logged in or else renders the login page */}
+      {
+        token ? 
+          <h1> I am logged in </h1> :<Login />
+      }
 
       <Login />
     </div>
