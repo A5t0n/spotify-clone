@@ -4,6 +4,7 @@ import './App.css';
 import Login from './Login';
 import { getTokenFromUrl } from './spotify';
 import { set } from 'mongoose';
+import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotify = new SpotifyWebApi();
 
@@ -22,9 +23,15 @@ function App() {
 
     if(_token){
       setToken(_token);
+
+      spotify.setAccessToken(_token);
+
+      spotify.getMe().then(user => {
+        console.log("PERSON: ", user);
+      });
     }
     console.log("I HAVE A TOKEN: ", token);
-  });
+  },[]);
 
   return (
     <div className="app">
@@ -34,8 +41,6 @@ function App() {
         token ? 
           <h1> I am logged in </h1> :<Login />
       }
-
-      <Login />
     </div>
   );
 }
