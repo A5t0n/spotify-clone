@@ -3,8 +3,8 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Login from './Login';
 import { getTokenFromUrl } from './spotify';
-import { set } from 'mongoose';
 import SpotifyWebApi from 'spotify-web-api-js';
+import Player from './Player';
 
 const spotify = new SpotifyWebApi();
 
@@ -39,7 +39,7 @@ function App() {
       {/* if a token is present, then displayes a message that you are logged in or else renders the login page */}
       {
         token ? 
-          <h1> I am logged in </h1> :<Login />
+          <h1> <Player/> </h1> :<Login />
       }
     </div>
   );
