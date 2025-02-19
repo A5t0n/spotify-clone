@@ -3,7 +3,10 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Login from './Login';
 import { getTokenFromUrl } from './spotify';
-import { set } from 'mongoose';
+import SpotifyWebApi from 'spotify-web-api-js';
+import Player from './Player';
+
+const spotify = new SpotifyWebApi();
 
 function App() {
 
@@ -18,18 +21,26 @@ function App() {
 
     const _token=hash.access_token;
 
-    if(token){
+    if(_token){
       setToken(_token);
+
+      spotify.setAccessToken(_token);
+
+      spotify.getMe().then(user => {
+        console.log("PERSON: ", user);
+      });
     }
     console.log("I HAVE A TOKEN: ", token);
-  });
+  },[]);
 
   return (
     <div className="app">
-      {/* Spotify Logo */}
-      {/* Login with Spotify Button */}
-
-      <Login />
+      
+      {/* if a token is present, then displayes a message that you are logged in or else renders the login page */}
+      {
+        token ? 
+          <h1> <Player/> </h1> :<Login />
+      }
     </div>
   );
 }
