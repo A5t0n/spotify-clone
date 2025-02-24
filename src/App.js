@@ -11,10 +11,8 @@ const spotify = new SpotifyWebApi();
 
 function App() {
 
-  const [token, setToken] = useState(null);
-
   //like a gun in react that allows us to shoot data into the data layer
-  const [{ user }, dispatch] = useDataLayerValue();
+  const [{ user, token }, dispatch] = useDataLayerValue();
 
   //useeffect runs code based on a given condition
   useEffect(() => {
@@ -32,9 +30,7 @@ function App() {
       });
 
       spotify.setAccessToken(_token);
-
       spotify.getMe().then((user) => {
-
         //dispatching the action to the data layer
         dispatch({
           type: 'SET_USER',
@@ -42,21 +38,12 @@ function App() {
         });
       });
     }
-    console.log("I HAVE A TOKEN: ", token);
   },[]);
 
-  console.log("PERSON: ", user);
-  console.log("TOKEN: ", token);
-
-
-  return (
-    <div className="app">
-      
-      {/* if a token is present, then displayes a message that you are logged in or else renders the login page */}
-      {
-        token ? 
-          <h1> <Player/> </h1> :<Login />
-      }
+  return (<div className="app">
+    {/* if a token is present, then displayes a message that you are logged in or else renders the login page */}
+      {/* Passing the spotify object inside the player */}
+      {token ? <Player spotify={spotify}/> : <Login /> }
     </div>
   );
 }
