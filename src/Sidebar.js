@@ -1,11 +1,19 @@
 import React from 'react';
 import './Sidebar.css';
+import SidebarOption from './SidebarOption';
 
 function Sidebar() {
     return (
         <div className='sidebar'>
-            <h1>I am the sidebar</h1>
-        </div>
+            <img 
+            className='sidebar_logo'
+            src='https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg'
+            alt='logo'/>
+
+            <SidebarOption title='Home'/>
+            <SidebarOption title='Search'/>
+            <SidebarOption title='Your Library'/>
+       </div>
     )
 }
 export default Sidebar;
