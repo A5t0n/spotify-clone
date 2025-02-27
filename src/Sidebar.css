@@ -8,3 +8,9 @@
     min-width: 230px;
     background-color: #040404;
 }
+
+.sidebar_logo{
+    margin-right: auto;
+    height: 70px;
+    padding: 10px;    
+}
