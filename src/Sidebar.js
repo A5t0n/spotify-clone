@@ -18,6 +18,10 @@ function Sidebar() {
             <SidebarOption Icon={LibraryMusicIcon} title='Your Library'/>
             <strong className='sidebar_title'>PLAYLISTS</strong>
             <hr/>
+
+            <SidebarOption title='Hip Hop'/>
+            <SidebarOption title='Rock'/>
+            <SidebarOption title='RnB'/>
        </div>
     )
 }
