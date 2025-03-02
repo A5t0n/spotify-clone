@@ -37,6 +37,14 @@ function App() {
           user: user,
         });
       });
+
+      //pulling user's playlists from spotify using the built in spotify api
+      spotify.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: 'SET_PLAYLISTS',
+          playlists: playlists,
+        });
+      });
     }
   },[]);
 
